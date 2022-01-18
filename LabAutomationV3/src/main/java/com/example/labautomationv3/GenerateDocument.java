@@ -118,7 +118,7 @@ public class GenerateDocument {
 
 
         // Dosyayi kaydetme, kendi path'inizi bu kisma yerlestirin
-        try (FileOutputStream out = new FileOutputStream("C:\\Users\\kasim\\IdeaProjects\\LabAutomationV2\\src\\reports\\Report.docx")) {
+        try (FileOutputStream out = new FileOutputStream("C:\\Users\\kasim\\IdeaProjects\\LabAutomationV3\\src\\reports\\Report.docx")) {
             doc.write(out);
         }
 
