@@ -1,4 +1,4 @@
-package com.example.labautomationv3;
+package com.example.labautomationv4;
 
 
 import org.apache.poi.xwpf.usermodel.*;
@@ -118,8 +118,9 @@ public class GenerateDocument {
 
 
         // Dosyayi kaydetme, kendi path'inizi bu kisma yerlestirin
-        try (FileOutputStream out = new FileOutputStream("C:\\Users\\kasim\\IdeaProjects\\LabAutomationV3\\src\\reports\\Report.docx")) {
+        try (FileOutputStream out = new FileOutputStream("C:\\Users\\kasim\\IdeaProjects\\LabAutomationV4\\src\\reports\\Report.docx")) {
             doc.write(out);
+            System.out.println("Rapor olusturuldu.");
         }
 
 
@@ -201,8 +202,9 @@ public class GenerateDocument {
 
 
         // Dosyayi kaydetme
-        try (FileOutputStream out = new FileOutputStream("C:\\Users\\kasim\\IdeaProjects\\LabAutomationV3\\src\\reports\\Report.docx")) {
+        try (FileOutputStream out = new FileOutputStream("C:\\Users\\kasim\\IdeaProjects\\LabAutomationV4\\src\\reports\\Report.docx")) {
             doc.write(out);
+            System.out.println("Rapor olusturuldu.");
         }
     }
 
