@@ -9,26 +9,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
+import static com.example.labautomationv4.userLoginCtrl.users;
 
 public class UserMainFrameCtrl implements Initializable {
-
+    public static ArrayList<LabMain.Sample> Samples = new ArrayList<>();
     @FXML
     ListView listview1;
     ObservableList list1 = FXCollections.observableArrayList();
-    @Override//for list view
+    @Override//listview
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData1();
     }
@@ -39,13 +33,15 @@ public class UserMainFrameCtrl implements Initializable {
         list1.addAll(a, b);
         listview1.getItems().addAll(list1);
     }
-    public void numuneTeslimi() throws ParseException {
+    public void numuneTeslimi() {
         String numunetipi = (String) listview1.getSelectionModel().getSelectedItem();
-        //Numune nesnesi burada olusturuluyor
-        LabMain.Sample numune1 = new LabMain.Sample(numunetipi);
-        numune1.musteri = userLoginCtrl.musteri;
-        numune1.sahibi= LabMain.Sample.musteri.Isim;
-        System.out.println("Numune Bilgileri: Numune Sahibi:"+numune1.musteri.Isim+", Numune Tipi:"+numune1.numuneTipi + ", Numune Teslim Tarihi:" + numune1.teslimTarihi);
+        //Numune nesnesi olusturuluyor
+        Samples.add(new LabMain.Sample(numunetipi));
+        Samples.get(Samples.size()-1).musteri = users.get(users.size()-1);
+        Samples.get(Samples.size()-1).sahibi= LabMain.Sample.musteri.Isim;
+        System.out.println("Numune Bilgileri: Numune Sahibi: "+Samples.get(Samples.size()-1).musteri.Isim+
+                ", Numune Tipi: "+Samples.get(Samples.size()-1).numuneTipi + ", Numune Teslim Tarihi: " +
+                Samples.get(Samples.size()-1).teslimTarihi);
     }
 
     public void LogOut(ActionEvent event) throws IOException {
