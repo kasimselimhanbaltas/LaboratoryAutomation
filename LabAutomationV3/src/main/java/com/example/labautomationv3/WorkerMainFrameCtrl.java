@@ -1,5 +1,4 @@
 package com.example.labautomationv3;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,8 +25,8 @@ public class WorkerMainFrameCtrl implements Initializable{
     private void loadData1() {//Numune listesine veri yukleyen fonksiyon
         list1.removeAll(list1);
         ArrayList<String> toload = new ArrayList<String>();
-        for (int i =0;i< LabMain.Sample.Samples.size();i++){
-            String msg = ("\t\t"+LabMain.Sample.Samples.get(i).sahibi+"\t"+LabMain.Sample.Samples.get(i).numuneTipi+"\t"+LabMain.Sample.Samples.get(i).teslimTarihi+"\t"+(i+1));
+        for (int i =0;i< UserMainFrameCtrl.Samples.size();i++){
+            String msg = ("\t\t"+UserMainFrameCtrl.Samples.get(i).sahibi+"\t"+UserMainFrameCtrl.Samples.get(i).numuneTipi+"\t"+UserMainFrameCtrl.Samples.get(i).teslimTarihi+"        "+(i+1));
             toload.add(i,msg);
         }
         list1.addAll(toload);
@@ -38,14 +36,15 @@ public class WorkerMainFrameCtrl implements Initializable{
 
     public void report() throws IOException {//Calisanin onaylama butonuna basmasiyla rapor olusturan fonsiyon
         String line = (String) listView2.getSelectionModel().getSelectedItem();
+        int num = listView2.getSelectionModel().getSelectedIndex();
         if (line.contains("Kan")){
             XWPFDocument document = new XWPFDocument();
-            GenerateDocument.createReport1(document,LabMain.Sample.Samples.get(0),LabMain.calisan);
+            GenerateDocument.createReport1(document,UserMainFrameCtrl.Samples.get(num),LabMain.calisan);
 
         }
         if (line.contains("İdrar")){
             XWPFDocument document = new XWPFDocument();
-            GenerateDocument.createReport2(document,LabMain.Sample.Samples.get(0),LabMain.calisan);
+            GenerateDocument.createReport2(document,UserMainFrameCtrl.Samples.get(num),LabMain.calisan);
         }
 
     }
@@ -65,7 +64,5 @@ public class WorkerMainFrameCtrl implements Initializable{
         window.setScene(tableViewScene);
         window.show();
     }
-
-
 
 }
