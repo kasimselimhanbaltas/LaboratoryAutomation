@@ -10,22 +10,21 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class userLoginCtrl {
-    static LabMain.Musteri musteri = new LabMain.Musteri();
+    static ArrayList<LabMain.Musteri> users = new ArrayList<>();
     @FXML
     TextField userName, userTC;
 
     @FXML
     public void userLogin(){
-
-        System.out.print("Login Succesful, Welcome ");
         String username = userName.getText();
         String tc = userTC.getText();
-        System.out.println(username + ".");
-        musteri.Isim=username;musteri.TCno=tc;
-        String message1 = ("Sayın " + musteri.Isim  + ", lütfen numune tipini seçip numuneyi teslim ediniz.");
-        //userWelcomeText.setText(String.valueOf(message1));
+        users.add(new LabMain.Musteri(username,tc));
+        users.get(users.size()-1).Isim=username;users.get(users.size()-1).TCno=tc;
+        System.out.println("Login Succesful, Welcome "+username+".");
+
     }
     public void Loginusr(ActionEvent event) throws IOException{
         if (userName.getText().equals("")==false){
